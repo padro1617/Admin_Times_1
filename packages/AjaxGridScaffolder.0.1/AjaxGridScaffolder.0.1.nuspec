@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>AjaxGridScaffolder</id>
+    <version>0.1</version>
+    <title>Ajax Grid Scaffolder</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://aspnet.codeplex.com/license</licenseUrl>
+    <projectUrl>http://aspnet.codeplex.com/wikipage?title=MVC&amp;referringTitle=Home</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A scaffolder has many similarities to the built-in "Controller ... using Entity Framework" scaffolder, but it provides pagination, reordering and inline editing of the content using Ajax.</description>
+    <summary>A scaffolder has many similarities to the built-in "Controller ... using Entity Framework" scaffolder, but it provides pagination, reordering and inline editing of the content using Ajax.</summary>
+    <tags>ASP.NETMVC Ajax Grid Controller Scaffolder</tags>
+  </metadata>
+</package>

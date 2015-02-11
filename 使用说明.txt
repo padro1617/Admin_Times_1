@@ -1,0 +1,12 @@
+默认路由配置 从admin启动
+菜单中的链接
+点击链接,是ajax的get方式,返回结果为部分视图,会替换掉原来ID="mainContent"中的内容
+所以,一般情况下,链接应当这样写
+@Ajax.ActionLink("更多...", "index", "account", new AjaxOptions { HttpMethod = "get",UpdateTargetId="mainContent"})
+纯html
+<a href="/Admin/account/edit" 
+   data-ajax-update="#mainContent"
+   data-ajax-mode="replace"
+   data-ajax-method="Get" 
+   data-ajax-begin="active"
+   data-ajax="true">更换密码</a>
