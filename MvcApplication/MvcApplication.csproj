@@ -16,6 +16,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +47,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -173,6 +179,60 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ModelTimes.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTimes.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelTimes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelTimes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTimes.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_admin.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_admin_log.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_article.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_article_category.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_config.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_content.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_guestbook.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_keywords.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_keywords_relative.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_nav.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_page.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_pic.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\times_product.cs">
+      <DependentUpon>ModelTimes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +337,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\_top.cshtml" />
+    <EntityDeploy Include="Models\ModelTimes.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelTimes.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelTimes.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTimes.edmx</DependentUpon>
+      <LastGenOutput>ModelTimes.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelTimes.edmx.diagram">
+      <DependentUpon>ModelTimes.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModelTimes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTimes.edmx</DependentUpon>
+      <LastGenOutput>ModelTimes.cs</LastGenOutput>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Hello\Index.cshtml" />
   </ItemGroup>
@@ -368,6 +445,9 @@
     <None Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <None Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <None Include="Content\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
