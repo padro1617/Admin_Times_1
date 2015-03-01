@@ -236,6 +236,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\data%282015-2-10 20.39.38%29.sql" />
+    <Content Include="App_Data\dataOptions.sql" />
+    <Content Include="App_Data\首页设计图.png" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
@@ -331,7 +334,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
@@ -354,6 +356,7 @@
       <DependentUpon>ModelTimes.edmx</DependentUpon>
       <LastGenOutput>ModelTimes.cs</LastGenOutput>
     </Content>
+    <Content Include="App_Data\老窖瓷子页.rar" />
     <None Include="packages.config" />
     <Content Include="Views\Hello\Index.cshtml" />
   </ItemGroup>

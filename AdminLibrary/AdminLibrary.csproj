@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DAL\BaseDB.cs" />
     <Compile Include="DAL\times_admin.cs" />
     <Compile Include="Model\Enumerations.cs" />
