@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.Data.Common;
 using AdminLibrary.Model;
 using System.Collections.Generic;
 namespace AdminLibrary.DAL
@@ -104,7 +106,7 @@ namespace AdminLibrary.DAL
                             os.Message = "[timesadmin_insert]已存在相同名称的信息";
                             break;
                         default:
-                            os.Flag = info.CategoryID = result;
+                            os.Flag = result;
                             os.Status = OptStatus.Success;
                             break;
                     }
@@ -148,7 +150,7 @@ namespace AdminLibrary.DAL
                             break;
                         case 0:
                             os.Status = OptStatus.Fail;
-                            os.Message = "[timesadmin_update] " + info.user_id.toString()+ " 更新失败";
+                            os.Message = "[timesadmin_update] " + info.user_id.ToString()+ " 更新失败";
                             break;
                         default:
                             os.Flag = info.user_id;
