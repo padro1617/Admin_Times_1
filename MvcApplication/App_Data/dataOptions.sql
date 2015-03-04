@@ -108,3 +108,23 @@ AS
 		SET @result=@@ROWCOUNT
 	END
 GO
+
+--================
+--lpd 20150229
+--删除一条记录网站管理员成员信息
+--@result -2 已存在相同名称的信息
+--================
+CREATE PROCEDURE timesadmin_delete(
+	@user_id TINYINT,
+	@result INT OUTPUT
+)
+AS
+	IF(@user_id IS NULL)
+		SET @result=0
+	DELETE dbo.times_admin WHERE user_id=@user_id
+	--当没有发生错误时返回0
+	IF(@@ERROR=0)
+		SET @result=1
+	ELSE		
+		SET @result=0
+GO

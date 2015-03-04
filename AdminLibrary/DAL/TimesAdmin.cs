@@ -8,7 +8,7 @@ namespace AdminLibrary.DAL
 
     internal class TimesAdmin : BaseDB
     {
-        internal IList<times_admin> SelectList()
+        internal IList<times_admin> Select()
         {
             DbCommand dbCmd = db.GetStoredProcCommand("timesadmin_select");
 
@@ -30,7 +30,7 @@ namespace AdminLibrary.DAL
             return list;
         }
 
-        internal times_admin GetInfo(int user_id)
+        internal times_admin GetInfo(byte user_id)
         {
             DbCommand dbCmd = db.GetStoredProcCommand("timesadmin_getinfo");
 
@@ -105,6 +105,10 @@ namespace AdminLibrary.DAL
                             os.Status = OptStatus.Repeat;
                             os.Message = "[timesadmin_insert]已存在相同名称的信息";
                             break;
+                        case 0:
+                            os.Status = OptStatus.Fail;
+                            os.Message = "[timesadmin_insert]记录插入失败";
+                            break;
                         default:
                             os.Flag = result;
                             os.Status = OptStatus.Success;
@@ -166,5 +170,43 @@ namespace AdminLibrary.DAL
             return os;
         }
 
+        /// <summary>
+        /// 删除管理员信息
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
+        internal OperationStatus Delete(byte user_id)
+        {
+            var os = new OperationStatus();
+            try
+            {
+                DbCommand dbCmd = db.GetStoredProcCommand("timesadmin_delete");
+
+                db.AddInParameter(dbCmd, "user_id", DbType.Byte, user_id);
+                db.AddOutParameter(dbCmd, "result", DbType.Int32, 0);
+                db.ExecuteNonQuery(dbCmd);
+
+                if (db.GetParameterValue(dbCmd, "result") != DBNull.Value)
+                {
+                    int result = Convert.ToInt32(db.GetParameterValue(dbCmd, "result"));
+                    switch (result)
+                    {
+                        case 0:
+                            os.Status = OptStatus.Fail;
+                            os.Message = "[timesadmin_delete] " + user_id.ToString() + " 删除失败";
+                            break;
+                        default:
+                            os.Flag = user_id;
+                            os.Status = OptStatus.Success;
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                os = new OperationStatus(ex);
+            }
+            return os;
+        }
     }
 }

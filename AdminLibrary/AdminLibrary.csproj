@@ -42,8 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\TimesAdmin.cs" />
     <Compile Include="DAL\BaseDB.cs" />
-    <Compile Include="DAL\times_admin.cs" />
+    <Compile Include="DAL\TimesAdmin.cs" />
     <Compile Include="Model\Enumerations.cs" />
     <Compile Include="Model\OperationStatus.cs" />
     <Compile Include="Model\times_admin.cs" />
