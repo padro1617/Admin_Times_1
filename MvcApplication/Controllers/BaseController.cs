@@ -34,30 +34,13 @@ namespace MvcApplication.Controllers
             //    ViewBag.Theme = info.Theme;
             //    ViewBag.FirstInterestInfo = Interest.SelectList(TradeID, InterestSelectType.Commend).FirstOrDefault() ?? new InterestInfo();
             //}
-            //if (Session["ShowWeb5_UserInfo"] == null && !string.IsNullOrEmpty(User.Identity.Name)) {
-            //    Session["ShowWeb5_UserInfo"] = ShowLibrary.BLL.Users.GetInfo(Convert.ToInt32(User.Identity.Name));
-            //}
-            //var uInfo = (UserInfo)Session["ShowWeb5_UserInfo"];
-            //if (uInfo != null) {
-            //    ViewBag.IsLogin = true;
-            //}
-            //if (uInfo != null && uInfo.IsManager) {
-            //    ViewBag.IsManager = true;
-            //}
-            //else {
-            //    ViewBag.IsManager = false;
-            //}
-
-            //if (Session["settting-" + TradeID + ""] == null) {
-            //    Session["settting-" + TradeID + ""] = SettingList = Setting.Select(TradeID);
-            //}
-            //else {
-            //    SettingList = Session["settting-" + TradeID + ""] as IList<SettingInfo>;
-            //}
-            //ViewBag.SettingList = SettingList;
-
-            //ViewBag.IsManager = Convert.ToBoolean( Session["IsManager"] == null ? "false" : Session["IsManager"] );
-
+			if ( Session["times_admin_userinfo"] == null && !string.IsNullOrEmpty( User.Identity.Name ) ) {
+				Session["times_admin_userinfo"] = AdminLibrary.BLL.TimesAdmin.GetInfo( Convert.ToByte( User.Identity.Name ) );
+			}
+			var uInfo = (times_admin) Session["times_admin_userinfo"];
+			if ( uInfo != null ) {
+				ViewBag.IsLogin = true;
+			}
         }
 
         /// <summary>

@@ -62,8 +62,12 @@
     <Compile Include="Model\times_product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DLL\" />
+    <Content Include="DLL\DotNet.Utilities.dll" />
+    <Content Include="DLL\DotNet.Utilities.pdb" />
+    <Content Include="DLL\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="DLL\ThoughtWorks.QRCode.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
