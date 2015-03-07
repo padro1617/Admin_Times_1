@@ -90,5 +90,9 @@ namespace MvcApplication
         }
 
 
+		internal static void ErrorRedirect( ActionExecutingContext filterContext ) {
+
+			filterContext.Result = new RedirectToRouteResult( "Default", new RouteValueDictionary( new { controller = "Home", action = "Default" } ) );
+		}
     }
 }

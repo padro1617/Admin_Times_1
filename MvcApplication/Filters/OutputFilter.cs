@@ -9,7 +9,7 @@ using System.Threading;
 using Tools;
 using ShowAlone.Model;
 
-namespace ShowWeb
+namespace MvcApplication
 {
     public class OutputFilter : IHttpModule
     {

@@ -133,7 +133,8 @@ if(NOT EXISTS(select TOP 1 id from sys.sysobjects where id=OBJECT_ID('times_admi
 	  email varchar(60) NOT NULL default '',
 	  password varchar(32) NOT NULL default '',
 	  last_ip varchar(15) NOT NULL default '',
-	  add_time DATETIME NOT NULL DEFAULT GETDATE()
+	  add_time DATETIME NOT NULL DEFAULT GETDATE(),
+	  login_time DATETIME NOT NULL DEFAULT GETDATE()
 	) 
 
 --INSERT INTO times_admin VALUES('1','admin','admin@admin.com','7fef6171469e80d32c0559f88b377245','ALL','1377768032','1411098722','127.0.0.1');

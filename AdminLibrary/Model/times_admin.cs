@@ -21,6 +21,7 @@ namespace AdminLibrary.Model
         public string email { get; set; }
         public string password { get; set; }
         public string last_ip { get; set; }
-        public System.DateTime add_time { get; set; }
+		public System.DateTime add_time { get; set; }
+		public System.DateTime edit_time { get; set; }
     }
 }

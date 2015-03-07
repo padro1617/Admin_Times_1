@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ShowWeb.Filters
+namespace MvcApplication.Filters
 {
 	public class AuthorizeFilterAttribute : ActionFilterAttribute
 	{

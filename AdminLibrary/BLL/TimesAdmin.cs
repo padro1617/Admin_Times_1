@@ -28,6 +28,16 @@ namespace AdminLibrary.BLL
         {
             return dal.GetInfo(user_id);
 		}
+
+		/// <summary>
+		/// 判断用户名和密码是否正确
+		/// 争取就返回对于记录
+		/// </summary>
+		/// <param name="user_id"></param>
+		/// <returns>为NULL代表登录失败</returns>
+		public static OperationStatus Login( string user_name, string password ) {
+			return dal.Login( user_name, password );
+		}
         /// <summary>
         /// 判断用户名和密码是否正确
         /// 争取就返回对于记录
@@ -55,7 +65,6 @@ namespace AdminLibrary.BLL
 		public static OperationStatus Update( times_admin info ) {
             return dal.Update(info);
 		}
-
 		/// <summary>
 		/// 删除广告位图片信息
 		/// </summary>

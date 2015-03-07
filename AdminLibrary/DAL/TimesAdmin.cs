@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using AdminLibrary.Model;
 using System.Collections.Generic;
 namespace AdminLibrary.DAL
@@ -46,7 +47,46 @@ namespace AdminLibrary.DAL
             }
             return info;
         }
+		
+        /// <summary>
+        /// 登录检测
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+		internal OperationStatus Login( string user_name, string password )
+        {
+            var os = new OperationStatus();
+            DbCommand dbCmd = db.GetStoredProcCommand("timesadmin_login");
+            db.AddInParameter(dbCmd, "user_name", DbType.String, user_name);
+            db.AddInParameter(dbCmd, "password", DbType.String, password);
+            //1 代表存在用户名和密码  0 代表登录失败
+            db.AddOutParameter(dbCmd, "result", DbType.Int32, 0);
 
+            using (IDataReader dr = db.ExecuteReader(dbCmd))
+            {
+	            if (db.GetParameterValue(dbCmd, "result") != DBNull.Value)
+	            {
+		            int result = Convert.ToInt32(db.GetParameterValue(dbCmd, "result"));
+		            switch (result)
+		            {
+			            case 0:
+				            os.Status = OptStatus.Fail;
+				            os.Message = "登录失败,用户名或密码错误";
+				            break;
+			            default:
+				            os.Flag = result;
+				            os.Status = OptStatus.Success;
+				            break;
+		            }
+	            }
+	            else
+	            {
+					os = new OperationStatus( OptStatus.Fail, "[timesadmin_login]检测登录失败", null );
+				}
+	            dr.Dispose();
+            }
+            return null;
+        }
         /// <summary>
         /// 登录检测
         /// </summary>
@@ -54,7 +94,6 @@ namespace AdminLibrary.DAL
         /// <returns></returns>
         internal times_admin LoginCheck(string user_name, string password)
         {
-            var os = new OperationStatus();
             DbCommand dbCmd = db.GetStoredProcCommand("timesadmin_logincheck");
             db.AddInParameter(dbCmd, "user_name", DbType.String, user_name);
             db.AddInParameter(dbCmd, "password", DbType.String, password);

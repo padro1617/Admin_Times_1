@@ -1,11 +1,7 @@
 ﻿using AdminLibrary.BLL;
 using AdminLibrary.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Text.RegularExpressions;
 
 namespace MvcApplication.Controllers
 {
@@ -34,16 +30,44 @@ namespace MvcApplication.Controllers
             //    ViewBag.Theme = info.Theme;
             //    ViewBag.FirstInterestInfo = Interest.SelectList(TradeID, InterestSelectType.Commend).FirstOrDefault() ?? new InterestInfo();
             //}
-			if ( Session["times_admin_userinfo"] == null && !string.IsNullOrEmpty( User.Identity.Name ) ) {
-				Session["times_admin_userinfo"] = AdminLibrary.BLL.TimesAdmin.GetInfo( Convert.ToByte( User.Identity.Name ) );
+			//是否登录
+			ViewBag.IsLogin = false;
+	        if (Session["times_admin_userinfo"] == null)
+	        {
+				if (!string.IsNullOrEmpty( User.Identity.Name ) ) {
+					var timesadminuserinfo= AdminLibrary.BLL.TimesAdmin.GetInfo( Convert.ToByte( User.Identity.Name ) );
+					Session["times_admin_userinfo"] = timesadminuserinfo;
+					ViewBag.IsLogin = true;
+				}
+	        }
+	        else
+	        {
+				var uInfo = (times_admin) Session["times_admin_userinfo"];
+				if ( uInfo != null ) {
+					ViewBag.IsLogin = true;
+				}
 			}
-			var uInfo = (times_admin) Session["times_admin_userinfo"];
-			if ( uInfo != null ) {
-				ViewBag.IsLogin = true;
-			}
+	        if (ViewBag.IsLogin)
+	        {
+				//管理员登录 需要更新最新登录时间和IP
+				UpdateLoginIPDelegate UpdateLoginIP = UpdateLoginIPLog;
+		        UpdateLoginIP.BeginInvoke(null, null);
+	        }
+
         }
 
-        /// <summary>
+
+		#region 异步写入登录操作日志
+
+	    private delegate void UpdateLoginIPDelegate();
+
+	    private void UpdateLoginIPLog()
+	    {
+		}
+
+	    #endregion
+
+		/// <summary>
         /// 获取当前用户Id
         /// </summary>
         /// <returns></returns>

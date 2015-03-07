@@ -21,6 +21,30 @@ AS
 	SELECT * FROM dbo.times_admin WHERE user_id=@user_id
 GO
 
+
+--================
+--lpd 20150229
+--登录检查并且返回对应记录
+--================
+CREATE PROCEDURE timesadmin_login(
+	@user_name VARCHAR(60),
+	@password VARCHAR(32),
+	@result INT OUTPUT
+)
+AS
+	IF(EXISTS(SELECT TOP 1 user_id FROM dbo.times_admin WHERE user_name=@user_name AND password=@password) )
+	BEGIN
+		set @result=1
+		--最后登录时间记录
+		UPDATE dbo.times_admin SET login_time=GETDATE() WHERE user_name=@user_name AND password=@password
+	END
+	ELSE
+	BEGIN
+		set @result=0
+	END
+GO
+
+
 --================
 --lpd 20150229
 --登录检查并且返回对应记录
@@ -35,6 +59,8 @@ AS
 	BEGIN
 		set @result=1
 		SELECT TOP 1 * FROM dbo.times_admin WHERE user_name=@user_name AND password=@password
+		--最后登录时间记录
+		UPDATE dbo.times_admin SET login_time=GETDATE() WHERE user_name=@user_name AND password=@password
 	END
 	ELSE
 	BEGIN
@@ -66,13 +92,15 @@ AS
 		  email ,
 		  password ,
 		  last_ip ,
-		  add_time
+		  add_time,
+		  login_time
 		)
 		VALUES  ( @user_name , -- user_name - varchar(60)
 				  @email , -- email - varchar(60)
 				  @password , -- password - varchar(32)
 				  @last_ip , -- last_ip - varchar(15)
-				  GETDATE()  -- add_time - datetime
+				  GETDATE(),  -- add_time - datetime
+				  GETDATE()  -- login_time - datetime
 				)
 		SET @result=SCOPE_IDENTITY()
 	END

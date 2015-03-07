@@ -182,7 +182,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
-    <Compile Include="Filters\AdminAuthorizeFilterAttribute.cs" />
+    <Compile Include="Filters\CheckLoginAttribute.cs" />
     <Compile Include="Filters\AjaxAuthorizeFilterAttribute.cs" />
     <Compile Include="Filters\AuthorizeFilterAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -190,6 +190,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\MvcHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ModelTimes.Context.cs">
       <AutoGen>True</AutoGen>
@@ -369,6 +370,10 @@
       <LastGenOutput>ModelTimes.cs</LastGenOutput>
     </Content>
     <Content Include="App_Data\老窖瓷子页.rar" />
+    <Content Include="Config\comadmin.config" />
+    <Content Include="Config\appSettings.config" />
+    <Content Include="Config\connectionStrings.config" />
+    <Content Include="Config\RouteConfiguration.config" />
     <None Include="packages.config" />
     <Content Include="Views\Hello\Index.cshtml" />
   </ItemGroup>
