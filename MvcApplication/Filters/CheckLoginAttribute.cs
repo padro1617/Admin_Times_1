@@ -15,20 +15,20 @@ namespace MvcApplication.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext) {
 			var uInfo = (AdminLibrary.Model.times_admin) filterContext.HttpContext.Session["times_admin_userinfo"];
+			//读取保存在cookies中的记录
             if (uInfo == null && filterContext.HttpContext.Request.Cookies.Get("M") != null) {
 				var arr = DotNet.Utilities.DESEncrypt.Decrypt( filterContext.HttpContext.Request.Cookies.Get( "M" ).Value.ToString() ).Split( '|' );
-                var op = AdminLibrary.BLL.TimesAdmin.LoginCheck(arr[0], arr[1]);
-                if (op.Status == OptStatus.Success) {
-                    uInfo = Users.GetInfo((int)op.Flag);
-                    FormsAuthentication.SetAuthCookie(uInfo.UserID.ToString(), true);
+				uInfo = AdminLibrary.BLL.TimesAdmin.LoginCheck( arr[0], arr[1] );
+				if ( uInfo !=null) {
+                    FormsAuthentication.SetAuthCookie(uInfo.user_id.ToString(), true);
                     filterContext.HttpContext.Session["ShowWeb5_UserInfo"] = uInfo;
                 }
             }
-            if (uInfo == null || !uInfo.IsManager) {
+            if (uInfo == null) {
                 filterContext.Result = new RedirectResult("/Account/ManagerLogin");
 
 				// 处理方法
-				MvcApplication.ErrorRedirect( filterContext ); 
+				//MvcApplication.ErrorRedirect( filterContext ); 
                 return;
             }
             //todo

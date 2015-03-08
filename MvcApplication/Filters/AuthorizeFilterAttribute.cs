@@ -13,8 +13,6 @@ namespace MvcApplication.Filters
 				filterContext.Result = new RedirectResult( "/Account/Login" );
 				return;
 			}
-			//todo
-
 			//filterContext.HttpContext.Response.Clear();
 			//filterContext.HttpContext.Response.StatusCode = 401;
 			//filterContext.HttpContext.Response.End();
